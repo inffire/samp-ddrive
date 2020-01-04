@@ -1,25 +1,25 @@
 script_name('ddrive')
 script_description('kill the engine dec')
 script_moonloader(018)
-script_version_number(11)
+script_version_number(12)
 script_author('inf')
 
 local mem = require "memory"
 local Vector3D = require "vector3d"
 
 local eVehicleType = {
-    VEHICLE_AUTOMOBILE = 0,
-    VEHICLE_MTRUCK = 1,
-    VEHICLE_QUAD = 2,
-    VEHICLE_HELI = 3,
-    VEHICLE_PLANE = 4,
-    VEHICLE_BOAT = 5,
-    VEHICLE_TRAIN = 6,
-    VEHICLE_FHELI = 7,
-    VEHICLE_FPLANE = 8,
-    VEHICLE_BIKE = 9,
-    VEHICLE_BMX = 10,
-    VEHICLE_TRAILER = 11
+	VEHICLE_AUTOMOBILE = 0,
+	VEHICLE_MTRUCK = 1,
+	VEHICLE_QUAD = 2,
+	VEHICLE_HELI = 3,
+	VEHICLE_PLANE = 4,
+	VEHICLE_BOAT = 5,
+	VEHICLE_TRAIN = 6,
+	VEHICLE_FHELI = 7,
+	VEHICLE_FPLANE = 8,
+	VEHICLE_BIKE = 9,
+	VEHICLE_BMX = 10,
+	VEHICLE_TRAILER = 11
 }
 
 local NARDCORE_MODE = false
@@ -65,7 +65,7 @@ function main()
 				subclass ~= eVehicleType.VEHICLE_BMX
 			then
 				local a, b = getPadState(0, 16), getPadState(0, 14)
-				if a < 1 and b < 1 then
+				if a < 1 and b < 1 and not isCarInAirProper(car) then
 					if isVehicleMovingForward(car) then
 						setGameKeyState(16, 3)
 					else
